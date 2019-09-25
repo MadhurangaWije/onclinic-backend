@@ -1,11 +1,12 @@
 package org.kanishka.onclinicwebbackend.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Demographics {
     private String race;
     private String religion;
-    private List<String> languages;
+    private List<String> languages= Arrays.asList("");;
     private String occupation;
 
     public Demographics() {

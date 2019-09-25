@@ -10,15 +10,17 @@ public class JwtResponse {
     private String userName;
     private String token;
     private String type="Bearer";
-    private Collection<? extends GrantedAuthority> authorities;
+    private Collection<String> authorities;
+    private String expiresAt;
 
     public JwtResponse() {
     }
 
-    public JwtResponse(String userName, String token, Collection<? extends GrantedAuthority> authorities) {
+    public JwtResponse(String userName, String token, Collection<? extends GrantedAuthority> authorities, String expiresAt) {
         this.userName = userName;
         this.token = token;
-        this.authorities = authorities;
+        this.authorities = authorities.stream().map(Object::toString).collect(Collectors.toList());
+        this.expiresAt=expiresAt;
     }
 
     public String getUserName() {
@@ -45,11 +47,19 @@ public class JwtResponse {
         this.type = type;
     }
 
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<String> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(List<? extends GrantedAuthority> authorities) {
+    public void setAuthorities(Collection<String> authorities) {
         this.authorities = authorities;
+    }
+
+    public String getExpiresAt() {
+        return expiresAt;
+    }
+
+    public void setExpiresAt(String expiresAt) {
+        this.expiresAt = expiresAt;
     }
 }

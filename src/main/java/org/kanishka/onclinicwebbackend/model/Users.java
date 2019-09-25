@@ -10,6 +10,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,9 +40,9 @@ public class Users {
     //secondary information fields
     private String fullName;
     private String nic;
-    private List<String> address;
-    private ContactInformation contactInformation;
-    private Demographics demographics;
+    private List<String> address=Arrays.asList("","","");
+    private ContactInformation contactInformation = new ContactInformation();
+    private Demographics demographics = new Demographics();
 
     // field assigned by the system dynamically
     private List<Roles> roles= Arrays.asList(Roles.ROLE_GENERAL);

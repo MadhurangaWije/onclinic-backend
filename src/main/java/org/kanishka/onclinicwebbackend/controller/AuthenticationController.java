@@ -36,7 +36,8 @@ public class AuthenticationController {
         Authentication authentication=authenticate(request.getEmail(),request.getPassword());
         UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
         String token=jwtProvider.generateToken(authentication);
-       return ResponseEntity.ok(new JwtResponse(userDetails.getUsername(),token,userDetails.getAuthorities()));
+        String expiresAt= jwtProvider.geExpirationFromJwtToken(token);
+       return ResponseEntity.ok(new JwtResponse(userDetails.getUsername(),token,userDetails.getAuthorities(),expiresAt));
 
     }
 

@@ -7,6 +7,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Component
@@ -52,5 +54,11 @@ public class JwtProvider {
 
     public String getUserNameFromJwtToken(String token){
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
+    }
+
+    public String geExpirationFromJwtToken(String token){
+        Date d=Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getExpiration();
+        LocalDateTime localDateTime=d.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        return localDateTime.toString();
     }
 }

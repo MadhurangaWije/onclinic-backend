@@ -1,10 +1,11 @@
 package org.kanishka.onclinicwebbackend.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ContactInformation {
-    private List<String> personal;
-    private List<String> emergency;
+    private List<String> personal= Arrays.asList("");
+    private List<String> emergency= Arrays.asList("");;
 
     public ContactInformation() {
     }

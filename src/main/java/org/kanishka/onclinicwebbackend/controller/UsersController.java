@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UsersController {
 
     @Autowired
@@ -21,9 +22,10 @@ public class UsersController {
         return userRepository.findAll();
     }
 
-    @GetMapping("{_id}")
-    public Users getOne(@PathVariable ObjectId _id){
-        Users user=userRepository.findBy_id(_id);
+    @GetMapping("{email}")
+    public Users getOne(@PathVariable String email){
+
+        Users user=userRepository.findByEmail(email).get();
         if (user!=null){
             return user;
         }
@@ -32,6 +34,11 @@ public class UsersController {
 
     @PostMapping
     public Users addUser(@Valid @RequestBody Users user) throws Exception {
+        return userRepository.save(user);
+    }
+
+    @PutMapping("{email}")
+    public Users updateUser(@PathVariable String email, @RequestBody Users user){
         return userRepository.save(user);
     }
 
