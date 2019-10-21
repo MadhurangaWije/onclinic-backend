@@ -2,6 +2,7 @@ package org.kanishka.onclinicwebbackend.model;
 
 import org.bson.types.ObjectId;
 import org.hibernate.validator.constraints.UniqueElements;
+import org.kanishka.onclinicwebbackend.model.general_health_record.GeneralHealthRecord;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -51,6 +52,8 @@ public class Users {
     public boolean isEnabled() {
         return enabled;
     }
+
+    public GeneralHealthRecord generalHealthRecord;
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
@@ -179,5 +182,13 @@ public class Users {
 
     public void setRoles(List<Roles> roles) {
         this.roles = roles;
+    }
+
+    public GeneralHealthRecord getGeneralHealthRecord() {
+        return generalHealthRecord;
+    }
+
+    public void setGeneralHealthRecord(GeneralHealthRecord generalHealthRecord) {
+        this.generalHealthRecord = generalHealthRecord;
     }
 }
