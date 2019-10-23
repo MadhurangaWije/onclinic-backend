@@ -39,6 +39,9 @@ public class Users {
     private boolean healthCareProfessional;
 
     //secondary information fields
+    
+    private String slmc;
+    private int registry;
     private String fullName;
     private String nic;
     private List<String> address=Arrays.asList("","","");
@@ -134,6 +137,22 @@ public class Users {
 
     public void setHealthCareProfessional(boolean healthCareProfessional) {
         this.healthCareProfessional = healthCareProfessional;
+    }
+
+    public String getSlmc() {
+        return slmc;
+    }
+
+    public void setSlmc(String slmc) {
+        this.slmc = slmc;
+    }
+
+    public int getRegistry() {
+        return registry;
+    }
+
+    public void setRegistry(int registry) {
+        this.registry = registry;
     }
 
     public String getFullName() {
