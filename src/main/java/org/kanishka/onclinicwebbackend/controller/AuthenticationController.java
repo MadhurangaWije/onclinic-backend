@@ -45,7 +45,7 @@ public class AuthenticationController {
         try {
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userName,password));
         }catch (DisabledException e){
-            throw new Exception("User diabled");
+            throw new Exception("User disabled");
         }catch (BadCredentialsException e){
             throw new Exception("Invalid credentials");
         }

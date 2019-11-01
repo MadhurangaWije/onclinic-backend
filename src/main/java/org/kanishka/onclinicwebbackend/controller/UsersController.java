@@ -46,7 +46,7 @@ public class UsersController {
     @PostMapping
     public Users addUser(@Valid @RequestBody Users user) {
 
-        user.setPassword(passwordEncoder.encode(user.getFirstName()));
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
         if (user.isHealthCareProfessional()){
             String response=restTemplate.getForObject("http://www.srilankamedicalcouncil.org/registry.php?registry=5&initials=&last_name=&other_name=&reg_no=33787&nic=871881219&part_of_address=&search=Search",String.class);
             boolean found;
