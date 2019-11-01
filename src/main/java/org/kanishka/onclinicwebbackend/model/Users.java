@@ -1,17 +1,12 @@
 package org.kanishka.onclinicwebbackend.model;
 
 import org.bson.types.ObjectId;
-import org.hibernate.validator.constraints.UniqueElements;
 import org.kanishka.onclinicwebbackend.model.general_health_record.GeneralHealthRecord;
+import org.kanishka.onclinicwebbackend.model.reports.Media;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,7 +24,6 @@ public class Users {
 
     private String dob;
 
-
     private String firstName;
 
     private String lastName;
@@ -39,9 +33,15 @@ public class Users {
     private boolean healthCareProfessional;
 
     //secondary information fields
-    
+
+    private String profilePhotoUrl;
+    @Indexed(sparse = true)
     private String slmc;
     private int registry;
+    private String specialization;
+    private List<String> availableTimeSlots;
+    private String aboutMe;
+    private List<Media> acceptedMedia;
     private String fullName;
     private String nic;
     private List<String> address=Arrays.asList("","","");
@@ -73,6 +73,30 @@ public class Users {
         this.lastName = lastName;
         this.gender = gender;
         this.healthCareProfessional = healthCareProfessional;
+    }
+
+    public Users(ObjectId _id, String email, String password, String dob, String firstName, String lastName, Gender gender, boolean healthCareProfessional, String slmc, int registry, String specialization, List<String> availableTimeSlots, String aboutMe, String fullName, String nic, List<String> address, ContactInformation contactInformation, Demographics demographics, List<Roles> roles, boolean enabled, GeneralHealthRecord generalHealthRecord) {
+        this._id = _id;
+        this.email = email;
+        this.password = password;
+        this.dob = dob;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.healthCareProfessional = healthCareProfessional;
+        this.slmc = slmc;
+        this.registry = registry;
+        this.specialization = specialization;
+        this.availableTimeSlots = availableTimeSlots;
+        this.aboutMe = aboutMe;
+        this.fullName = fullName;
+        this.nic = nic;
+        this.address = address;
+        this.contactInformation = contactInformation;
+        this.demographics = demographics;
+        this.roles = roles;
+        this.enabled = enabled;
+        this.generalHealthRecord = generalHealthRecord;
     }
 
     public String get_id() {
@@ -139,6 +163,14 @@ public class Users {
         this.healthCareProfessional = healthCareProfessional;
     }
 
+    public String getProfilePhotoUrl() {
+        return profilePhotoUrl;
+    }
+
+    public void setProfilePhotoUrl(String profilePhotoUrl) {
+        this.profilePhotoUrl = profilePhotoUrl;
+    }
+
     public String getSlmc() {
         return slmc;
     }
@@ -153,6 +185,38 @@ public class Users {
 
     public void setRegistry(int registry) {
         this.registry = registry;
+    }
+
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
+
+    public List<String> getAvailableTimeSlots() {
+        return availableTimeSlots;
+    }
+
+    public void setAvailableTimeSlots(List<String> availableTimeSlots) {
+        this.availableTimeSlots = availableTimeSlots;
+    }
+
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
+
+    public List<Media> getAcceptedMedia() {
+        return acceptedMedia;
+    }
+
+    public void setAcceptedMedia(List<Media> acceptedMedia) {
+        this.acceptedMedia = acceptedMedia;
     }
 
     public String getFullName() {

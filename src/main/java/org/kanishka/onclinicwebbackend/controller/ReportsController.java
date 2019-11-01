@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/reports")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://4409a0f0.ngrok.io")
 public class ReportsController {
 
     @Autowired

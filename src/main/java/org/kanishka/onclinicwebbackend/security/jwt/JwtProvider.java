@@ -4,12 +4,16 @@ import io.jsonwebtoken.*;
 import org.kanishka.onclinicwebbackend.model.UserPrinciple;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 @Component
 public class JwtProvider {
@@ -24,10 +28,14 @@ public class JwtProvider {
     public String generateToken(Authentication authentication){
         UserDetails userDetails=(UserPrinciple) authentication.getPrincipal();
 
+        HashMap<String, Object> customJwtPayload= new HashMap<>();
+        customJwtPayload.put("authorities",userDetails.getAuthorities());
+
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
                 .setExpiration(new Date(new Date().getTime()+expiration*1000))
                 .setIssuedAt(new Date())
+                .addClaims(customJwtPayload)
                 .signWith(SignatureAlgorithm.HS512,secret)
                 .compact();
     }
